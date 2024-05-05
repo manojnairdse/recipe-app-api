@@ -22,16 +22,17 @@ class USerManager(BaseUserManager):
 
 
 
-class User(BaseUserManager, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     """USer in system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    #is_anonymous = models.BooleanField(default=False)
+    # is_anonymous = models.BooleanField(default=False)
+    # is_authenticated = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = []
 
-    object = USerManager()
+    objects = USerManager()
 
     USERNAME_FIELD = "email"
